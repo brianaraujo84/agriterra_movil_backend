@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+    <!--Estado Animal-->
+
+    <!-- <record id="vaca_en_produccion" model="estado.animal">   
+        <field name="id">1</field>
+        <field name="name">Vaca en Producción</field>
+        <field name="en_produccion" eval="1"/>
+        <field name="consumo_alimentación" eval=""/>
+        <field name="edad_min_meses" eval="25"/>
+        <field name="edad_max_meses" eval="72"/>
+        <field name="estado_registro" eval="1"/>
+    </record>
+
+    <record id="vaca_seca" model="estado.animal">   
+        <field name="id">2</field>
+        <field name="name">Vaca Seca</field>
+        <field name="en_produccion" eval="0"/>
+        <field name="consumo_alimentación" eval=""/>
+        <field name="edad_min_meses" eval="25"/>
+        <field name="edad_max_meses" eval="72"/>
+        <field name="estado_registro" eval="1"/>
+    </record>
+
+    <record id="vaca_de_descarte" model="estado.animal">   
+        <field name="id">3</field>
+        <field name="name">Vaca de Descarte</field>
+        <field name="en_produccion" eval="0"/>
+        <field name="consumo_alimentación" eval=""/>
+        <field name="edad_min_meses" eval="25"/>
+        <field name="edad_max_meses" eval="72"/>
+        <field name="estado_registro" eval="1"/>
+    </record>
+
+    <record id="terneros" model="estado.animal">   
+        <field name="id">4</field>
+        <field name="name">Terneros</field>
+        <field name="en_produccion" eval="0"/>
+        <field name="consumo_alimentación" eval=""/>
+        <field name="edad_min_meses" eval="25"/>
+        <field name="edad_max_meses" eval="72"/>
+        <field name="estado_registro" eval="1"/>
+    </record>
+
+    <record id="terneras" model="estado.animal">   
+        <field name="id">5</field>
+        <field name="name">Terneras</field>
+        <field name="en_produccion" eval="0"/>
+        <field name="consumo_alimentación" eval=""/>
+        <field name="edad_min_meses" eval="25"/>
+        <field name="edad_max_meses" eval="72"/>
+        <field name="estado_registro" eval="1"/>
+    </record>
+
+    <record id="vaquillas" model="estado.animal">   
+        <field name="id">6</field>
+        <field name="name">Vaquillas</field>
+        <field name="en_produccion" eval="0"/>
+        <field name="consumo_alimentación" eval=""/>
+        <field name="edad_min_meses" eval="25"/>
+        <field name="edad_max_meses" eval="72"/>
+        <field name="estado_registro" eval="1"/>
+    </record>
+
+    <record id="toros_y_toretes" model="estado.animal">   
+        <field name="id">7</field>
+        <field name="name">Toros y Toretes</field>
+        <field name="en_produccion" eval="0"/>
+        <field name="consumo_alimentación" eval=""/>
+        <field name="edad_min_meses" eval="25"/>
+        <field name="edad_max_meses" eval="72"/>
+        <field name="estado_registro" eval="1"/>
+    </record> -->
+        </data>
+</odoo>

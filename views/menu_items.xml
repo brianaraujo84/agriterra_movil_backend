@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="estado_animal_form_view_tree" model="ir.ui.view">
+		<field name="name">estado.animal.tree</field>
+		<field name="model">estado.animal</field>
+		<field name="arch" type="xml">
+			<tree string="Estado Animal">
+                    <field name="name"/>
+                    <field name="en_produccion"/>
+                    <field name="consumo_alimentación"/>
+                    <field name="edad_min_meses"/>
+                    <field name="edad_max_meses"/>
+                    <field name="estado_registro"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="estado_animal_form_view" model="ir.ui.view">
+		<field name="name">estado.animal.form</field>
+		<field name="model">estado.animal</field>
+		<field name="arch" type="xml">
+			<form string="Estado Animal">
+                <sheet>
+                    <group  colspan="4" >
+                        <field name="name"/>
+                        <field name="en_produccion"/>
+                        <field name="consumo_alimentación"/>
+                        <field name="edad_min_meses"/>
+                        <field name="edad_max_meses"/>
+                        <field name="estado_registro"/>
+                    </group>
+                </sheet>
+			</form>
+		</field>
+	</record>    
+
+    <record id="view_product_template_add_nombre_animal" model="ir.ui.view">
+        <field name="name">view.product.template.add.nombre.animal</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">        
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="nombre_animal"/>
+            </xpath>   
+        </field>
+    </record>
+    
+
+    <record id="view_product_template_add_estado_animal" model="ir.ui.view">
+        <field name="name">view.product.template.add.estado.animal</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">        
+            <xpath expr="//field[@name='cost_currency_id']" position="before">
+                <field name="fecha_registro"/>
+                <field name="edad_meses"/>
+                <field name="estado_animal_id"/>
+            </xpath>   
+        </field>
+    </record>    
+
+
+    <record id="view_product_template_add_lista_parto_animal" model="ir.ui.view">
+        <field name="name">view.product.template.add.lista.parto.animal</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">        
+            <xpath expr="//field[@name='cost_currency_id']" position="before">
+                <field name="parto_animal_ids"/>
+            </xpath>   
+        </field>
+    </record>    
+
+    <!-- Acciones Escalas -->
+    <record id="action_estado_animal" model="ir.actions.act_window">
+        <field name="name">Estado Animal</field>
+        <field name="res_model">estado.animal</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="estado_animal_form_view_tree"/>
+        <field name="target">main</field>
+    </record>
+   
+
+  <record id="action_view_parto_animal" model="ir.actions.act_window">
+    <field name="name">Parto Animal</field>
+    <field name="res_model">parto.animal</field>
+  </record>
+
+  <record id="action_view_vacunacion_animal" model="ir.actions.act_window">
+    <field name="name">Vacunacion Animal</field>
+    <field name="res_model">vacunacion.animal</field>
+  </record>
+  
+
+    <!-- Items Menus -->    
+    
+
+
+    <!-- Men�s -->
+    <menuitem id="menu_mi_cuenta"
+                name="Mi cuenta"
+                parent=""
+                action="agriterra_movil_backend.action_server_mi_cuenta"/>
+
+    <menuitem id="menu_main_saldoapp" 
+                name="Agriterra App" 
+                parent="" 
+                action="agriterra_movil_backend.action_view_movimiento"/>
+    
+    <menuitem id="menu_movimiento" 
+                name="Movimientos" 
+                parent="agriterra_movil_backend.menu_main_saldoapp" 
+                />
+
+    <menuitem id="menu_movimiento_todo" 
+                name="Todos" 
+                parent="agriterra_movil_backend.menu_movimiento" 
+                action="agriterra_movil_backend.action_view_movimiento"
+                />
+    <menuitem id="menu_movimiento_ingresos" 
+                name="Ingresos" 
+                parent="agriterra_movil_backend.menu_movimiento" 
+                action="agriterra_movil_backend.action_view_movimiento_ingresos"
+                />
+
+    <menuitem id="menu_movimiento_gastos" 
+                name="Gastos" 
+                parent="agriterra_movil_backend.menu_movimiento" 
+                action="agriterra_movil_backend.action_view_movimiento_gastos"
+                />
+
+    <menuitem id="menu_ajustes"
+              name="Ajustes"
+              parent="agriterra_movil_backend.menu_main_saldoapp"
+              action="agriterra_movil_backend.action_view_categoria"/> 
+
+    <menuitem id="menu_categorias" 
+                name="Categorias" 
+                parent="agriterra_movil_backend.menu_ajustes" 
+                action="agriterra_movil_backend.action_view_categoria"/>
+
+    <menuitem id="menu_tag" 
+                name="Etiquetas" 
+                parent="agriterra_movil_backend.menu_ajustes" 
+                action="agriterra_movil_backend.action_view_tag"/>   
+    <menuitem id="menu_currency"
+                name="Moneda"
+                parent="agriterra_movil_backend.menu_ajustes"
+                action="action_view_currency"/>  
+
+    <menuitem id="Estado_Animal_menu" 
+                name="Estado Animal" 
+                parent="agriterra_movil_backend.menu_ajustes"
+                action="action_estado_animal" />
+
+    <menuitem id="Parto_Animal_menu" 
+                name="Parto Animal" 
+                parent="agriterra_movil_backend.menu_movimiento"
+                action="action_view_parto_animal"/>
+
+    <menuitem id="Vacunacion_Animal_menu" 
+                name="Vacunacion Animal" 
+                parent="agriterra_movil_backend.menu_movimiento"
+                action="action_view_vacunacion_animal"/>
+    
+
+
+
+
+</odoo>
+

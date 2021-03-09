@@ -1,0 +1,20 @@
+<odoo>
+    <record id="module_agriterra_movil_backend" model="ir.module.category">
+        <field name="name">Agriterra App</field>
+    </record>
+
+    <record id ="res_groups_administrador" model="res.groups">
+        <field name="name">Administrador</field>
+        <field name="category_id" ref="agriterra_movil_backend.module_agriterra_movil_backend"/>
+    </record>
+
+    <record id ="res_groups_user_free" model="res.groups">
+        <field name="name">Usuario Free</field>
+        <field name="category_id" ref="agriterra_movil_backend.module_agriterra_movil_backend"/>
+    </record>
+
+    <record id ="res_groups_user_premium" model="res.groups">
+        <field name="name">Usuario Premium</field>
+        <field name="category_id" ref="agriterra_movil_backend.module_agriterra_movil_backend"/>
+    </record>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+estado_animal,estado_animal,model_estado_animal,base.group_user,1,1,1,1
+parto_animal,parto_animal,model_parto_animal,base.group_user,1,1,1,1
+vacunacion_animal,vacunacion_animal,model_vacunacion_animal,base.group_user,1,1,1,1
+tacho,tacho,model_tacho,base.group_user,1,1,1,1
