@@ -8,20 +8,25 @@ class Movimiento(models.Model):
     _inherit = "mail.thread"
 
     name = fields.Char(string="Nombre",required=True)
-    type_move = fields.Selection(selection=[("ingreso","Ingreso"),("gasto","Gasto")],string="Tipo",default="ingreso",required=True,track_visibility="onchange")
     date = fields.Date(string="Fecha",track_visibility="onchange")
-    amount = fields.Float("Monto",track_visibility="onchange")
-    receipt_image = fields.Binary("Foto del recibo")
-    notas = fields.Html("Notas")
-    
+    type_move = fields.Selection(selection=[("ingreso","Ingreso"),("gasto","Gasto")],string="Tipo",default="ingreso",required=True,track_visibility="onchange")
+    # amount = fields.Float("Monto",track_visibility="onchange")
     currency_id = fields.Many2one("res.currency",default=162)
-
     user_id = fields.Many2one("res.users",string="Usuario",default=lambda self:self.env.user.id)
-    category_id = fields.Many2one("sa.category","Categoria")
-
-    tag_ids = fields.Many2many("sa.tag","sa_mov_sa_tag_rel","move_id","tag_id") #sa_movimiento_sa_tag_rel
-
+    amount = fields.Float("Precio Unitario", store=True, required=True, copy=True, digits='Product Price')
+    quantity = fields.Float("Cantidad", store=True, required=True, copy=True, digits='Product Price')
+    total_amount = fields.Monetary("Total", store=True, currency_field='currency_id', tracking=True)
     email = fields.Char(related="user_id.email",string="Correo Electrónico")
+    product_id = fields.Many2one('product.product', string='Product')
+
+
+    @api.depends('quantity', 'amount', 'currency_id')
+    def _compute_amount(self):
+        for expense in self:
+            expense.untaxed_amount = expense.unit_amount * expense.quantity
+            # taxes = expense.tax_ids.compute_all(expense.unit_amount, expense.currency_id, expense.quantity, expense.product_id, expense.employee_id.user_id.partner_id)
+            expense.total_amount = expense.unit_amount * expense.quantity
+
 
     @api.constrains("amount")
     def _check_amount(self):
@@ -32,25 +37,27 @@ class Movimiento(models.Model):
     def onchange_type_move(self):
         if self.type_move == "ingreso":
             self.name = "Ingreso: "
-            self.amount = 50
+            self.amount = 0
         elif self.type_move == "gasto":
             self.name = "Egreso : "
-            self.amount = 100
+            self.amount = 0
     
     @api.model
     def create(self,vals):
         name = vals.get("name","-")
         amount = vals.get("amount","0")
+        quantity = vals.get("quantity","0")
+        total_amount = quantity * amount
+
         type_move = vals.get("type_move","")
         date = vals.get("date","")
 
+        vals["total_amount"] = total_amount
         user = self.env.user
         count_mov = user.count_movimientos
         if count_mov >= 5 and user.has_group("agriterra_movil_backend.res_groups_user_free"):
             raise ValidationError("Solo puedes crear 5 movimientos por mes")
 
-        notas = """<p>Tipo de Movimiento: {}</p><p>Nombre: {}</p><p>Monto: {}</p><p>Fecha: {}<br></p>"""
-        vals["notas"] =notas.format(type_move,name,amount,date)
         return super(Movimiento,self).create(vals)
 
     """
