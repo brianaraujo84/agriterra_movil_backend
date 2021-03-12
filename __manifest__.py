@@ -21,6 +21,8 @@
         "views/views.xml",
         'views/menu_items.xml',
         "data/parametricas.xml",
+		'views/partner_view.xml',
+        'views/company_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="partner_view_l10n_bo">
+            <field name="name">partner.view.l10n_bo</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="vat" position="before">
+                    <!-- <label for="year" string="NIT o CI"/> -->
+                    <div>
+                        <field name="nit_ci" class="oe_inline" style="wight:20px"/>:
+                        <field name="expedido" class="oe_inline" style="wight:10px"/>
+                    </div>
+                    <!--<field name="nit_ci"/>
+                    <field name="expedido"/>-->
+                    <field name="razon_social"/>
+                    <field name="nro_tacho"/>
+                    <field name="fecha_nacimiento"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_res_partner_filter_l10n_bo" model="ir.ui.view">
+            <field name="name">view.res.partner.select.l10n_bo</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/field[@name='name']" position="after">
+                    <field name="nit_ci"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_res_partner_kanban_view_l10n_bo" model="ir.ui.view">
+            <field name="name">view.res.partner.kanban.view.l10n_bo</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban/field[@name='display_name']" position="after">
+                    <field name="nit_ci"/>
+                </xpath>
+                <xpath expr="//kanban/templates/t/div/div/strong" position="after">
+                    <ul>
+                        <li t-if="record.nit_ci.raw_value">
+                            <field name="nit_ci"/>
+                        </li>
+                    </ul>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_partner_tree_l10n_bo" model="ir.ui.view">
+            <field name="name">view.res.partner.tree.l10n_bo</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='display_name']" position="after">
+                    <field name="nit_ci"/>
+                    <field name="expedido"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
