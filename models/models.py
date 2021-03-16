@@ -15,7 +15,8 @@ class Movimiento(models.Model):
     user_id = fields.Many2one("res.users",string="Usuario",default=lambda self:self.env.user.id)
     amount = fields.Float("Precio Unitario", store=True, required=True, copy=True, digits='Product Price')
     quantity = fields.Float("Cantidad", store=True, required=True, copy=True, digits='Product Price')
-    total_amount = fields.Monetary("Total", store=True, currency_field='currency_id', tracking=True)
+    total_amount = fields.Monetary("Total", store=True, currency_field='currency_id', compute='_compute_amount', tracking=True)
+    category_id = fields.Many2one("sa.category","Categoria")
     email = fields.Char(related="user_id.email",string="Correo Electrónico")
     product_id = fields.Many2one('product.product', string='Product')
 
@@ -23,9 +24,9 @@ class Movimiento(models.Model):
     @api.depends('quantity', 'amount', 'currency_id')
     def _compute_amount(self):
         for expense in self:
-            expense.untaxed_amount = expense.unit_amount * expense.quantity
+            # expense.untaxed_amount = expense.amount * expense.quantity
             # taxes = expense.tax_ids.compute_all(expense.unit_amount, expense.currency_id, expense.quantity, expense.product_id, expense.employee_id.user_id.partner_id)
-            expense.total_amount = expense.unit_amount * expense.quantity
+            expense.total_amount = expense.amount * expense.quantity
 
 
     @api.constrains("amount")

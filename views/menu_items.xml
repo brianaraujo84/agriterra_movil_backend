@@ -100,16 +100,19 @@
     <menuitem id="menu_mi_cuenta"
                 name="Mi cuenta"
                 parent=""
-                action="agriterra_movil_backend.action_server_mi_cuenta"/>
+                action="agriterra_movil_backend.action_server_mi_cuenta"
+                
+                />
 
     <menuitem id="menu_main_saldoapp" 
-                name="Agriterra App" 
-                parent="" 
-                action="agriterra_movil_backend.action_view_movimiento"/>
+                name="Configuraciones Agriterra App" 
+                action="agriterra_movil_backend.action_view_categoria"
+                />
     
-    <menuitem id="menu_movimiento" 
+       <menuitem id="menu_movimiento" 
                 name="Movimientos" 
                 parent="agriterra_movil_backend.menu_main_saldoapp" 
+
                 />
 
     <menuitem id="menu_movimiento_todo" 
@@ -119,13 +122,11 @@
                 />
     <menuitem id="menu_movimiento_ingresos" 
                 name="Ingresos" 
-                parent="agriterra_movil_backend.menu_movimiento" 
                 action="agriterra_movil_backend.action_view_movimiento_ingresos"
                 />
 
     <menuitem id="menu_movimiento_gastos" 
                 name="Gastos" 
-                parent="agriterra_movil_backend.menu_movimiento" 
                 action="agriterra_movil_backend.action_view_movimiento_gastos"
                 />
 
@@ -163,6 +164,14 @@
                 parent="agriterra_movil_backend.menu_movimiento"
                 action="action_view_vacunacion_animal"/>
     
+
+    <menuitem id="product_product_template_agriterra"
+                name="Inventario de Animales"
+                parent=""
+                action="stock.product_template_action_product"
+                />
+
+
 
 
 
