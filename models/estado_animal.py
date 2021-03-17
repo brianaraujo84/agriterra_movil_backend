@@ -56,21 +56,19 @@ class ProductTemplate(models.Model):
     ]
 
 
-    @api.model
-    def create(self,vals):
-        name = vals.get("name", "-")
-        company_id = vals.get("company_id", "-")
-        default_code = vals.get("default_code", "-")
-        nombre_animal = vals.get("nombre_animal", "-")
-
-        vals["name"] = nombre_animal + "-" + str(company_id) + "-" +  str(default_code)
-        vals["default_code"] = str(company_id) + "-" + default_code     
-
-
-
-        return  super(ProductTemplate,self).create(vals)
-
-
+#    @api.model
+#    def create(self,vals):
+#        name = vals.get("name", "-")
+#        company_id = vals.get("company_id", "-")
+#        default_code = vals.get("default_code", "-")
+#        nombre_animal = vals.get("nombre_animal", "-")
+#       
+#       vals["name"] = nombre_animal + "-" + str(company_id) + "-" +  str(default_code)
+#        vals["default_code"] = str(company_id) + "-" + default_code     
+#
+#        return  super(ProductTemplate,self).create(vals)
+#       
+#
 
     # @api.model
     # def create(self, vals):
@@ -109,10 +107,10 @@ class ProductTemplate(models.Model):
 
 
 
-class CrmLead(models.Model):
-    _inherit = "crm.lead"
+#class CrmLead(models.Model):
+#    _inherit = "crm.lead"
 
-    partner_fecha_nacimiento = fields.Date(string="Fecha de nacimiento")
+#    partner_fecha_nacimiento = fields.Date(string="Fecha de nacimiento")
 
 
 class ResCompany(models.Model):
